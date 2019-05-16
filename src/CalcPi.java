@@ -24,7 +24,8 @@ public class CalcPi {
         // Define number of threads
         int threads = Runtime.getRuntime().availableProcessors(); // We get it automatically
         // We could also do:
-        // int threads = 20; and be done with it
+        // int threads = 20;
+        // and be done with it
 
         System.out.println("Starting computations");
 
