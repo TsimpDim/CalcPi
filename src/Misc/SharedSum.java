@@ -1,5 +1,7 @@
+package Misc;
+
 public class SharedSum {
-    static double sum;
+    static public double sum;
 
     public SharedSum(){
         sum = 0;
