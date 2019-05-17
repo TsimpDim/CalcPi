@@ -4,13 +4,16 @@ public class ThreadGroup extends Thread {
     private long start;
     private long stop;
     private long steps;
+    private double[] sums;
 
-    public ThreadGroup(int id, int threads, long steps){
+    public ThreadGroup(int id, int threads, long steps,double[] sums){
         this.id = id;
         this.start = id * (steps/ threads);
         this.stop = start + (steps/ threads);
         this.steps = steps;
         if (id == threads - 1) this.stop = steps;
+
+        this.sums = sums;
     }
 
     @Override
@@ -23,7 +26,7 @@ public class ThreadGroup extends Thread {
             localSum += 4.0 / (1.0 + x * x); // First add sums to our local sum
         }
 
-        // And add our local sums to the shared sum only when calculations are finished
-        SharedSum.add(localSum);
+
+        sums[id] = localSum;
     }
 }
