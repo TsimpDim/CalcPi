@@ -13,14 +13,14 @@ public class ServerProtocol implements Serializable {
 	private SharedSum sum;
 	private long steps;
 	private int threads;
-	private int arrived = 0;
+	private SharedSum arrived;
 
 
 	public ServerProtocol(){
 		this.steps = Info.getSteps();
 		this.threads = Info.getThreads();
-
-		sum = new SharedSum();
+		this.arrived = new SharedSum();
+		this.sum = new SharedSum();
 	}
 
 	public Reply processRequest(Request req) {
@@ -41,21 +41,20 @@ public class ServerProtocol implements Serializable {
 			res.setCode(0);
 
 		}else if(req.getReqType().equals("DLVR_L_SUM")) {
-			arrived++;
-			if(req.getValue() < 0){
+			arrived.add(1);
+			if(req.getValue() < 0)
 				res.setCode(1);
-			}
 			else {
 				sum.add(req.getValue());
 				res.setCode(0);
 			}
 
-			System.out.println("Server: arrived threads ("+arrived+"/"+threads+")");
-			if(arrived == threads){
+			System.out.println("Server: arrived threads ("+(int)arrived.getSum()+"/"+threads+")");
+			if(arrived.equals((double) threads)){
 				double step = 1.0 / (double) steps;
-				double pi = SharedSum.sum * step;
+				double pi = sum.getSum() * step;
 
-				System.out.println(pi);
+				System.out.println("Server: All threads arrived. Pi = " + pi);
 				res.setCode(1);
 			}
 

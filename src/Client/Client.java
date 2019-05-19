@@ -57,7 +57,7 @@ public class Client extends Thread{
 			Reply repSum = (Reply)clientInputStream.readObject(); // Get ok
 
 			if(repSum.getCode() == 1)
-				System.out.println("Oops");
+				System.out.println(id +" Oops " + localSum);
 
 		   System.out.println("Client["+id+"] exiting");
 

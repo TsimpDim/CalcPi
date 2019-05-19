@@ -1,13 +1,27 @@
 package Misc;
 
 public class SharedSum {
-    static public double sum;
+    private double sum;
 
     public SharedSum(){
         sum = 0;
     }
 
-    synchronized static public void add(double amount){
+    synchronized public void add(double amount){
         sum += amount;
+    }
+
+    public double getSum() {
+        return sum;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj.equals(sum);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(sum);
     }
 }
