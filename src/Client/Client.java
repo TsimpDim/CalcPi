@@ -16,7 +16,6 @@ public class Client extends Thread{
 	private long steps;
 	private long start;
 	private long stop;
-	private double sum;
 
    
 	public Client(int id, long steps){

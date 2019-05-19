@@ -22,8 +22,8 @@ public class Server {
 			pipe = socketConnection.accept();
 			serverInputStream = new ObjectInputStream(pipe.getInputStream());
 			serverOutputStream = new ObjectOutputStream(pipe.getOutputStream());
-			
-			
+
+
 			Request req = (Request) serverInputStream.readObject();
 			Reply rep = serverProt.processRequest(req);
 			serverOutputStream.writeObject(rep);
