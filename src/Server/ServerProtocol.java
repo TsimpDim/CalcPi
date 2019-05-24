@@ -38,17 +38,10 @@ public class ServerProtocol implements Serializable {
 			// Prepare answer
 			res.setStart(start);
 			res.setStop(stop);
-			res.setCode(0);
 
 		}else if(req.getReqType().equals("DLVR_L_SUM")) {
 			arrived++;
-			if(req.getValue() < 0){
-				res.setCode(1);
-			}
-			else {
-				sum.add(req.getValue());
-				res.setCode(0);
-			}
+			sum.add(req.getValue());
 
 			System.out.println("Server: arrived threads ("+arrived+"/"+threads+")");
 			if(arrived == threads){
@@ -56,7 +49,6 @@ public class ServerProtocol implements Serializable {
 				double pi = SharedSum.sum * step;
 
 				System.out.println(pi);
-				res.setCode(1);
 			}
 
 		}

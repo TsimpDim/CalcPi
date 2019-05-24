@@ -53,10 +53,7 @@ public class Client extends Thread{
 			System.out.println("Client["+id+"] sending local sum ("+localSum+")");
 			Request reqSum = new Request(id, "DLVR_L_SUM", localSum);
 			clientOutputStream.writeObject(reqSum);
-			Reply repSum = (Reply)clientInputStream.readObject(); // Get ok
 
-			if(repSum.getCode() == 1)
-				System.out.println("Oops");
 
 		   System.out.println("Client["+id+"] exiting");
 

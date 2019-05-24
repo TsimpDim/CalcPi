@@ -28,20 +28,11 @@ public class Server {
 			Reply rep = serverProt.processRequest(req);
 			serverOutputStream.writeObject(rep);
 
+			// The server waits for the second request
 			Request reqSum = (Request) serverInputStream.readObject();
-			Reply repSum = serverProt.processRequest(reqSum);
-			serverOutputStream.writeObject(rep);
-
-			// Should never be called by the generated clients
-			if(repSum.getCode() == 1)
-				break;
-
+			serverProt.processRequest(reqSum);
 		}
 
-		serverInputStream.close();
-		serverOutputStream.close();
-		pipe.close();
-		socketConnection.close();
    }
 
 }
