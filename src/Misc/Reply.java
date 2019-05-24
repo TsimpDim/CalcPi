@@ -6,7 +6,6 @@ public class Reply implements Serializable {
 
 	private long start;
 	private long stop;
-	private int code = 0;
 
 	public Reply(long start, long stop){
 		this.start = start;
@@ -29,14 +28,6 @@ public class Reply implements Serializable {
 
 	public long getStop() {
 		return stop;
-	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
-		this.code = code;
 	}
 }
 

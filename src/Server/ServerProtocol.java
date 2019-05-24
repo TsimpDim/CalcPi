@@ -38,16 +38,11 @@ public class ServerProtocol implements Serializable {
 			// Prepare answer
 			res.setStart(start);
 			res.setStop(stop);
-			res.setCode(0);
 
 		}else if(req.getReqType().equals("DLVR_L_SUM")) {
 			arrived.add(1);
-			if(req.getValue() < 0)
-				res.setCode(1);
-			else {
-				sum.add(req.getValue());
-				res.setCode(0);
-			}
+			sum.add(req.getValue());
+
 
 			System.out.println("Server: arrived threads ("+(int)arrived.getSum()+"/"+threads+")");
 			if(arrived.equals((double) threads)){
@@ -55,7 +50,6 @@ public class ServerProtocol implements Serializable {
 				double pi = sum.getSum() * step;
 
 				System.out.println("Server: All threads arrived. Pi = " + pi);
-				res.setCode(1);
 			}
 
 		}
